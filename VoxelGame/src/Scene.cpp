@@ -40,6 +40,7 @@ Scene::Scene()
     }
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
+    glEnable(GL_DEPTH_TEST);
     glFrontFace(GL_CW);
 
 }
@@ -47,8 +48,11 @@ Scene::Scene()
 void Scene::Start()
 {
     Chunk chunk;
+    chunk.Calculate();
+    Chunk chunk2;
+
     ObjectShader OS("Assets/Shaders/Terrain.frag", "Assets/Shaders/Terrain.vert");
-    Camera cam(1920,1080,glm::vec3(0,0,0));
+    Camera cam(1920,1080,glm::vec3(0,0,1));
     TextureBuffer texture;
 
     texture.Load("Assets/Textures/grass.png");
@@ -62,12 +66,13 @@ void Scene::Start()
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         cam.Input(window);
         texture.Bind(0);
         OS.SetUniform1i(0, 0);
         chunk.Draw(cam, OS);
+        chunk2.Draw(cam, OS);
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
 

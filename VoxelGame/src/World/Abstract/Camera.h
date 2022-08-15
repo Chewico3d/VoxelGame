@@ -20,7 +20,7 @@ public:
 
 	int With, Height;
 
-	float Speed = 0.01f;
+	float Speed = 0.04f;
 	float Sensibility = 100.0f; 
 
 	Camera(int With, int Height, glm::vec3 Position);

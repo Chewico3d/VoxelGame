@@ -7,6 +7,6 @@ uniform mat4 matrix;
 
 void main()
 {
-	gl_Position = matrix * vec4(pos.x, pos.y, pos.z, 1.0);
+	gl_Position = matrix * vec4(pos.x, pos.y, -pos.z, 1.0);
 	UVs = uvs;
 }

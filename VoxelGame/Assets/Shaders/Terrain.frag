@@ -7,4 +7,5 @@ in vec2 UVs;
 void main()
 {
 	FragColor = texture(screen, UVs);
+	//FragColor = vec4(UVs.xy, 0,1);
 }
